@@ -228,7 +228,7 @@ Private Sub wsMain_DataArrival(Index As Integer, ByVal bytesTotal As Long)
     SongName = ""
     EnumWindows AddressOf EnumProc, 0
     
-    rtnString = "Your IP£º" & Me.wsMain(Index).RemoteHostIP & "<br>"
+    rtnString = "Your IP: " & Me.wsMain(Index).RemoteHostIP & "<br>"
     rtnString = rtnString & "IP of icelolly.ddns.net is " & PublicIP & "<br>"
     
     If FindWindowW("#32770", "SoundWire Server") <> 0 Then
