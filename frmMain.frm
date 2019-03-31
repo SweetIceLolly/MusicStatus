@@ -144,6 +144,7 @@ Private Sub Form_Load()
     
     'Check command line
     If LCase(Command) = "/hide" Then
+        Me.Tray.InTray = True
         Me.Hide
     End If
     
