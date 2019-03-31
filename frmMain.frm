@@ -229,26 +229,26 @@ Private Sub wsMain_DataArrival(Index As Integer, ByVal bytesTotal As Long)
     SongName = ""
     EnumWindows AddressOf EnumProc, 0
     
-    rtnString = "Your IP: " & Me.wsMain(Index).RemoteHostIP & "<br>"
-    rtnString = rtnString & "IP of icelolly.ddns.net is " & PublicIP & "<br>"
+    rtnString = "您的IP：" & Me.wsMain(Index).RemoteHostIP & "<br>"
+    rtnString = rtnString & "icelolly.ddns.net的IP：" & PublicIP & "<br>"
     
     If FindWindowW("#32770", "SoundWire Server") <> 0 Then
-        rtnString = rtnString & "Music streaming server status: Started" & "<br>"
+        rtnString = rtnString & "音频串流服务器状态：已启动" & "<br>"
     Else
-        rtnString = rtnString & "Music streaming server status: Not Started" & "<br>"
+        rtnString = rtnString & "音频串流服务器状态：未启动" & "<br>"
     End If
     
     If SongName <> "" Then
-        rtnString = rtnString & "Current playing: " & SongName
+        rtnString = rtnString & "正在播放：" & SongName
     Else
-        rtnString = rtnString & "No music is playing!"
+        rtnString = rtnString & "没在放歌！大概冰棍听得耳朵痛了(*/ω＼*)"
     End If
     
     rtnData = StrConv(rtnString, vbFromUnicode)
     Me.wsMain(Index).SendData "HTTP/1.1 200 OK" & vbCrLf & _
                               "Date: Sun, 1, Jan 1950 00:00:00 GMT" & vbCrLf & _
                               "Content-Type: text/html" & vbCrLf & _
-                              "Content-length: " & UBound(rtnData) & vbCrLf & vbCrLf & rtnString
+                              "Content-length: " & UBound(rtnData) + 21 & vbCrLf & vbCrLf & "<meta charset=""GBK"">" & rtnString
 End Sub
 
 Private Sub wsMain_Error(Index As Integer, ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
