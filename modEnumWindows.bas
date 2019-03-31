@@ -11,6 +11,7 @@ Public Function EnumProc(ByVal hWnd As Long, lParam As Long) As BOOL
     GetWindowTextW hWnd, WindowNameBuffer, 255
     If InStr(WindowNameBuffer, " - YouTube - ±ù¹÷µÄä¯ÀÀÆ÷") Then                            'YouTube music found
         frmMain.SongName = Split(WindowNameBuffer, " - YouTube - ±ù¹÷µÄä¯ÀÀÆ÷")(0) & vbNullChar
+        
         EnumProc = 0
         Exit Function
     End If

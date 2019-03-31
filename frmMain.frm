@@ -224,6 +224,7 @@ End Sub
 
 Private Sub wsMain_DataArrival(Index As Integer, ByVal bytesTotal As Long)
     Dim rtnString       As String
+    Dim rtnData()       As Byte
     
     SongName = ""
     EnumWindows AddressOf EnumProc, 0
@@ -243,10 +244,11 @@ Private Sub wsMain_DataArrival(Index As Integer, ByVal bytesTotal As Long)
         rtnString = rtnString & "No music is playing!"
     End If
     
+    rtnData = StrConv(rtnString, vbFromUnicode)
     Me.wsMain(Index).SendData "HTTP/1.1 200 OK" & vbCrLf & _
                               "Date: Sun, 1, Jan 1950 00:00:00 GMT" & vbCrLf & _
                               "Content-Type: text/html" & vbCrLf & _
-                              "Content-length: " & Len(rtnString) & vbCrLf & vbCrLf & rtnString
+                              "Content-length: " & UBound(rtnData) & vbCrLf & vbCrLf & rtnString
 End Sub
 
 Private Sub wsMain_Error(Index As Integer, ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
